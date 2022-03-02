@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { faker } = require('@faker-js/faker');
 
-const {User, Todo} = require('./model');
+const {User, Todo, Blog} = require('./model');
 
 const seedDb = async ()=>{
     await mongoose.connect('mongodb://localhost:27017/todoMongoDB');
@@ -36,8 +36,8 @@ const seedDb = async ()=>{
         },
     ];
 
-    console.log(users);
-    
+    // console.log(users);
+
     const users = await User.insertMany(usersToCreate);
     const todosToCreate = [
         {
@@ -91,7 +91,19 @@ const seedDb = async ()=>{
 
     console.log(todos);
 
-   
+    const blogsToCreate = [{
+    description: faker.lorem.paragraph(),
+    userId: users[Math.floor(Math.random()*users.length)]._id,
+   }];
+
+   const blogs = await Blog.insertMany(blogsToCreate);
+
+   console.log(blogs);
+
+const employees = await User.findByRole('Employee');
+
+employees.forEach(employee => employee.greeting());
+
 
     process.exit(0);
 };

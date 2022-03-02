@@ -15,7 +15,7 @@ const todoSchema = new Schema({
     completed: {
         type: Boolean, 
         default: false,
-    }
+    },
 });
 
 const Todo = model('Todo', todoSchema);
