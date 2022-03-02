@@ -7,9 +7,9 @@ const userSchema= new Schema({
         type: String,
         //before this data is saved to the database, all of the trailing white spaces will be removed
         trim: true,
-        minLength: 4,
-        maxLenght: 8,
-        required: [true, 'Username is required and must be a minimum of 4 and maximum of 8'],
+        // minLength: 4,
+        // maxLenght: 8,
+        // required: [true, 'Username is required and must be a minimum of 4 and maximum of 8'],
     },
     role:{
         type: String,
