@@ -3,16 +3,19 @@ const {Todo}= require('../model');
 module.exports= {
     getAllTodo: async (req, res) => {
     try {
-        const getTodo = await Todo.find();
+        const getTodo = await Todo.find().populate({
+            path: 'userId', 
+            select: '-role -powerLevel -email -hobbies'
+        });
         res.json(getTodo);
     } catch (e) {
         res.json(e);
     }
 },
     createTodo: async (req, res) => {
-        const {text} = req.body;
+        const {text, userId} = req.body;
         try {
-            const newTodo = await Todo.create({text});
+            const newTodo = await Todo.create({text, userId});
             res.json(newTodo);
         } catch (e) {
             res.json(e)
